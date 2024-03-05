@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Index Page</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css">
+    <link rel="stylesheet" href="css_index.css">
+    <style>
+        body {
+            background-color: #F8EACA; 
+        }
+        input[type="submit"] {
+            background-color: #928063; /* the background color */
+            color: black; /*  the text color */
+            
+        }
+        #confirm-order {
+        background-color: #AA782C;
+        color: black;
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="container nav-container">
+        <div class="row nav-bar u-full-width">
+            <h2 class="name u-pull-left" style="color: #CE6D46;">Coffee Order System</h2>
+           
+            <ol class="nav-ul u-pull-right">
+                <ul class="nav-li"><a class="nav-a" style="color: rgb(4, 4, 3);" href="orderstatus.html">Order Status</a></ul>
+                <ul class="nav-li"><a class="nav-a" style="color: rgb(4, 4, 3);" href="home.html">Home</a></ul>
+                <ul class="nav-li"><a class="nav-a" style="color: rgb(4, 4, 3);" href="submitorder.html">Submit Order</a></ul>
+                <ul class="nav-li"><a class="nav-a" style="color: rgb(4, 4, 3);" href="beverage.html">Beverage</a></ul>
+                <ul class="nav-li"><a class="nav-a" style="color: rgb(4, 4, 3);" href="condiment.html">Condiment</a></ul>
+            </ol>
+
+            <ol class="nav-ul u-pull-left">
+                <h2 class="name u-pull-left" style="color: #000000;"> Add the condiments </h2>
+            </ol>
+
+            <div class="u-cf"></div>
+        </div>
+    </div>
+
+    <!-- Your content here -->
+
+    <div class="container">
+    <form>
+       
+      
+
+        <input type="submit" value="Milk">
+        <input type="submit" value="Mocha">
+        <input type="submit" value="Soy">
+        <input type="submit" value="Whip">
+    </form>
+    
+
+   
+    </div>
+    
+    <br>
+
+    <div id="order-status">
+    <div>My Order</div>
+    <div id="selected-beverage">Selected Beverage</div>
+    <div class="condiment">condiment 1</div>
+    <div class="condiment">condiment 2</div>
+    <div class="condiment">condiment 3</div>
+    <div class="condiment">condiment 4</div>
+  </div>
+  <button id="confirm-order">Confirm Order</button>
+  <script>
+    // Add event listeners for selecting condiments
+    const condimentItems = document.querySelectorAll('.condiment-item');
+    const selectedBeverage = document.getElementById('selected-beverage');
+    const condiments = document.querySelectorAll('.condiment');
+
+    condimentItems.forEach((item, index) => {
+      item.addEventListener('click', () => {
+        // Deselect previously selected condiment
+        if (condiments[index - 1]) {
+          condiments[index - 1].innerText = `condiment ${index}`;
+        }
+
+        // Update selected beverage and condiment text
+        if (index < 4) {
+          selectedBeverage.innerText = `Selected Beverage: condiment ${index + 1}`;
+        } else {
+          selectedBeverage.innerText = `Selected Beverage`;
+        }
+        condiments[index].innerText = `condiment ${index + 1} selected`;
+      });
+    });
+
+    // Adding  event listener for the order confirmation
+    document.getElementById('confirm-order').addEventListener('click', () => {
+        // using console log for displaying the message,  logic and further troubleshooting purposes
+      console.log('Order confirmed!');
+    });
+  </script>
+
+</body>
+</html>
